@@ -1,0 +1,28 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  users:[User]
+  user(username: String!): User
+}
+
+type User {
+  id: ID
+  username: String!
+  password: String
+  roles: [Role]
+  users:[ID]
+}
+
+type Role {
+  id: ID
+  name: String!
+  users: [User]
+}
+
+# The Root Mutation for the application
+type Mutation {
+   save(username: String!, password: String!) : User!
+}
