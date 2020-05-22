@@ -1,6 +1,5 @@
 package com.example.graphql.api;
 
-import com.example.graphql.model.User;
 import graphql.ExecutionResult;
 import graphql.GraphQL;
 import lombok.RequiredArgsConstructor;
@@ -13,13 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class Controller {
 
-//  private final GraphQL graphQL;
+  private final GraphQL graphQL;
 
   @PostMapping("/query")
-  public User query(@RequestBody String query){
-    return new User();
-//    ExecutionResult execute = graphQL.execute(query);
-//    return ResponseEntity.ok(execute);
+  public ResponseEntity query(@RequestBody String query){
+    ExecutionResult execute = graphQL.execute(query);
+    return ResponseEntity.ok(execute);
   }
 
 }

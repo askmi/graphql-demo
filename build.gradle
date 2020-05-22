@@ -30,6 +30,7 @@ dependencies {
     compile group: 'com.graphql-java', name: 'graphiql-spring-boot-starter', version: '5.0.2'
     compile group: 'com.graphql-java', name: 'graphql-spring-boot-starter', version: '5.0.2'
     compile group: 'com.graphql-java', name: 'graphql-java-tools', version: '5.2.4'
+//    compile 'io.leangen.graphql:graphql-spqr-spring-boot-starter:0.0.9'
 
     implementation group: 'org.springframework.data', name: 'spring-data-mongodb-log4j', version: '1.10.23.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
