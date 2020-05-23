@@ -1,0 +1,18 @@
+spring:
+  data:
+    mongodb:
+      database: graphgl
+
+graphql:
+  spqr:
+    http:
+      enabled: true
+      endpoint: 'graphql'
+    gui:
+      enabled: true
+      endpoint: gui
+
+#logging:
+#  level:
+#    org.springframework.data.mongodb.core.MongoTemplate=DEBUG
+#    org.springframework.data.mongodb.repository.Query=DEBUG

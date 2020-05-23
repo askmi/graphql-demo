@@ -1,18 +1,29 @@
 package com.example.graphql.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.leangen.graphql.annotations.GraphQLIgnore;
+import lombok.*;
+import org.springframework.data.annotation.PersistenceConstructor;
+
 import java.util.List;
-import lombok.Data;
-import lombok.experimental.Accessors;
 
-@Data
-@Accessors(chain = true)
-public class User {
+@Value
+@With
+@Builder
+@RequiredArgsConstructor(onConstructor_={@PersistenceConstructor})
+public final class User {
 
-  private String id;
-  private String username;
-  private String password;
-  private List<Role> roles;
-  private List<String> users;
+  String id;
 
+  String username;
+
+  String email;
+
+  @Getter(onMethod = @__( {@JsonIgnore, @GraphQLIgnore} ))
+  String password;
+
+  String role;
+
+  List<String> users;
 
 }
