@@ -21,8 +21,12 @@ public class MutationResolver {
     }
 
     @GraphQLMutation
-    public void removeTodo(String id) {
-        todoRepository.deleteById(id);
+    public boolean removeTodo(String id) {
+        boolean existsById = todoRepository.existsById(id);
+        if (existsById) {
+            todoRepository.deleteById(id);
+        }
+        return existsById;
     }
 
     @GraphQLMutation
