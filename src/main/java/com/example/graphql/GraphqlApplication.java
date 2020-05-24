@@ -1,5 +1,6 @@
 package com.example.graphql;
 
+import com.example.graphql.model.Role;
 import com.example.graphql.model.User;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,6 +10,7 @@ import org.springframework.data.mongodb.core.MongoOperations;
 
 import java.util.List;
 
+import static com.example.graphql.model.Role.*;
 import static java.lang.System.out;
 
 @SpringBootApplication
@@ -24,17 +26,17 @@ public class GraphqlApplication {
     return args -> {
       mongoOperations.dropCollection(User.class);
       mongoOperations.insertAll(List.of(
-          User.builder().username("user").password("user").role("USER").build(),
-          User.builder().username("user1").password("user").role("USER").build(),
-          User.builder().username("user3").password("user").role("USER").build(),
-          User.builder().username("user4").password("user").role("USER").build(),
-          User.builder().username("user5").password("user").role("USER").build(),
-          User.builder().username("user6").password("user").role("USER").build(),
-          User.builder().username("user7").password("user").role("USER").build(),
-          User.builder().username("user8").password("user").role("USER").build(),
-          User.builder().username("user9").password("user").role("USER").build(),
-          User.builder().username("user10").password("user").role("USER").build(),
-          User.builder().username("admin").password("admin").role("ADMIN").build()
+          User.builder().username("user").password("user").role(USER).email("user@.com").build(),
+          User.builder().username("user1").password("user").role(USER).email("user@.com").build(),
+          User.builder().username("user3").password("user").role(USER).email("user@.com").build(),
+          User.builder().username("user4").password("user").role(USER).email("user@.com").build(),
+          User.builder().username("user5").password("user").role(USER).email("user@.com").build(),
+          User.builder().username("user6").password("user").role(USER).email("user@.com").build(),
+          User.builder().username("user7").password("user").role(USER).email("user@.com").build(),
+          User.builder().username("user8").password("user").role(USER).email("user@.com").build(),
+          User.builder().username("user9").password("user").role(USER).email("user@.com").build(),
+          User.builder().username("user10").password("user").role(USER).email("user@.com").build(),
+          User.builder().username("admin").password("admin").role(ADMIN).email("admin@.com").build()
       ));
       mongoOperations.findAll(User.class).forEach(out::println);
     };

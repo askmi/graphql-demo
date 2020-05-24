@@ -22,7 +22,7 @@ public final class User {
   @Getter(onMethod = @__( {@JsonIgnore, @GraphQLIgnore} ))
   String password;
 
-  String role;
+  Role role;
 
   List<String> users;
 

@@ -7,6 +7,8 @@ import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 
 @RequiredArgsConstructor
 @GraphQLApi
@@ -21,18 +23,15 @@ public class MutationResolver {
     }
 
     @GraphQLMutation
-    public boolean removeTodo(String id) {
-        boolean existsById = todoRepository.existsById(id);
-        if (existsById) {
-            todoRepository.deleteById(id);
-        }
-        return existsById;
+    public Map<String,String> removeTodo(String id) {
+        todoRepository.deleteById(id);
+        return Map.of("id", id);
     }
 
     @GraphQLMutation
     public Todo completeTodo(String id) {
         return todoRepository.findById(id)
-                .map(todo -> todo.withCompleted(true))
+                .map(todo -> todo.withCompleted(!todo.isCompleted()))
                 .map(todoRepository::save)
                 .get();
     }
