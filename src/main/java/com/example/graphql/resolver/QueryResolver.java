@@ -9,13 +9,15 @@ import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Slice;
-import org.springframework.data.domain.SliceImpl;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
+import static org.springframework.data.domain.Sort.Direction.DESC;
 
 @RequiredArgsConstructor
 @GraphQLApi
@@ -24,6 +26,7 @@ public class QueryResolver {
 
     private final UserRepository userRepository;
     private final TodoRepository todoRepository;
+    private final MongoOperations mongoOperations;
 
     @GraphQLQuery
     public List<User> getUsers() {
@@ -36,10 +39,13 @@ public class QueryResolver {
     }
 
     @GraphQLQuery
-    public Slice<Todo> getTodos(@GraphQLArgument(name = "first", defaultValue = "10") final int first,
-                                final int skip) {
-        final Page<Todo> page = todoRepository.findAll(PageRequest.of(skip / first, first));
-        return new SliceImpl<>(page.getContent(), page.getPageable(), page.hasNext());
+    public List<Todo> getTodos(@GraphQLArgument(name = "first", defaultValue = "10") final int first,
+                                final long skip) {
+        Query query = Query.query(new Criteria())
+                .skip(skip)
+                .limit(first)
+                .with(Sort.by(DESC, "created"));
+        return mongoOperations.find(query, Todo.class);
     }
 
     @GraphQLQuery

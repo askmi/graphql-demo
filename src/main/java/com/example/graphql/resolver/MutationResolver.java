@@ -6,11 +6,14 @@ import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.spqr.spring.annotations.GraphQLApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 
 @RequiredArgsConstructor
+@Validated
 @GraphQLApi
 @Component
 public class MutationResolver {
@@ -18,7 +21,7 @@ public class MutationResolver {
     private final TodoRepository todoRepository;
 
     @GraphQLMutation
-    public Todo addTodo(Todo todo) {
+    public Todo addTodo(@Valid Todo todo) {
         return todoRepository.save(todo);
     }
 
@@ -31,7 +34,7 @@ public class MutationResolver {
     @GraphQLMutation
     public Todo completeTodo(String id) {
         return todoRepository.findById(id)
-                .map(todo -> todo.withCompleted(!todo.isCompleted()))
+                .map(todo -> todo.withCompleted(!todo.getCompleted()))
                 .map(todoRepository::save)
                 .get();
     }
