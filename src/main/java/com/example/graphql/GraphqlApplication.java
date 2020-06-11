@@ -1,6 +1,5 @@
 package com.example.graphql;
 
-import com.example.graphql.model.Role;
 import com.example.graphql.model.User;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;

@@ -2,6 +2,8 @@ spring:
   data:
     mongodb:
       database: graphgl
+  main:
+    lazy-initialization: true
 
 graphql:
   spqr:
@@ -11,6 +13,8 @@ graphql:
     gui:
       enabled: true
       endpoint: gui
+    ws:
+      enabled: false
 
 #logging:
 #  level:
