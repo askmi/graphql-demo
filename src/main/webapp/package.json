@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
-    "@graphql-codegen/cli": "^1.14.0",
+    "@graphql-codegen/cli": "^1.21.8",
     "@graphql-codegen/introspection": "^1.14.0",
     "@graphql-codegen/typescript": "^1.14.0",
     "@graphql-codegen/typescript-operations": "^1.14.0",
@@ -28,11 +28,11 @@
     "classnames": "^2.2.6",
     "graphql": "^15.0.0",
     "graphql-tag": "^2.10.3",
-    "node-sass": "^4.14.1",
+    "node-sass": "^9.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "reactstrap": "^8.4.1",
     "typescript": "~3.7.2"
   },
